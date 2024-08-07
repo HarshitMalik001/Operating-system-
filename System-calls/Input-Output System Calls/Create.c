@@ -2,14 +2,28 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+
+
 int main()
 {
-        char *filename = "newf.txt";
+        int fd;
 
-        mode_t mode = S_IRUSR;
+        char name[1000];
 
-        int fd = creat(filename,mode);
+        scanf("%s",name);
+        int perm = 0644;
 
-        close(fd);
+        fd = open(name ,O_CREAT | O_WRONLY,perm);
+
+        if(fd==-1)
+        {
+                printf("ERROR! \n");
+        }
+        else
+        {
+                close(fd);
+                printf("File Created succesfully");
+        }
         return 0;
 }
+             
